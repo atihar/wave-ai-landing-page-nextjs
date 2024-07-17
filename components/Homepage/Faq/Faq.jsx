@@ -110,7 +110,7 @@ const Faq = () => {
       {/* faw background image */}
       <div className="absolute -left-[200px] -bottom-[400px] lg:left-0 lg:-bottom-[380px] lg:z-0">
         <img
-          src={'/assets/images/faq-bg.png'}
+          src={'/assets/images/faq.png'}
           alt="faq image"
           className="object-cover"
           loading="lazy"

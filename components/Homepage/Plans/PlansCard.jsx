@@ -135,7 +135,7 @@ export const EliteCard = () => {
         </p>
         <div className="absolute right-0 top-0">
           <img
-            src={images.elite}
+            src={'/assets/images/elite.png'}
             alt="explorer bg"
             className="object-cover"
             loading="lazy"

@@ -18,7 +18,7 @@ const Information = () => {
             </p>
             <div className="mt-24 absolute bottom-[18px] left-0 right-0 flex justify-center w-full">
               <img
-                src={'/assets/images/companioin.png'}
+                src={'/assets/images/companion.png'}
                 alt="record"
                 className="w-[206px] h-[142px] object-cover mb-[42px]"
                 loading="lazy"
@@ -66,7 +66,7 @@ const Information = () => {
             </div>
             <div className="absolute -rotate-[11deg] top-4 right-20">
               <img
-                src={'/assets/images/podcast.png'}
+                src={'/assets/images/podcasts.png'}
                 alt="record"
                 className="object-cover size-16"
                 loading="lazy"

@@ -106,7 +106,7 @@ const Testimonial = () => {
     <div className="bg-[#FFFDE4] relative overflow-hidden" id="testimonial">
       <div className="absolute top-0 right-0 z-0">
         <img
-          src={images.testimonialBg}
+          src={'/assets/images/testimonialBg.png'}
           alt="testimonial bg"
           loading="lazy"
           className="relative"

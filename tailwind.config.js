@@ -12,10 +12,9 @@ module.exports = {
         secondary: "#ffffff60",
         black: "#111315",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      backgroundColor: {
+        primary: "#1020AE",
+        secondary: "#4D5EF6",
       },
       fontFamily: {
         primary: ["Archivo", "sans-serif"],
