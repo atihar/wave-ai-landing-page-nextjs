@@ -1,38 +1,66 @@
 'use client'
 import { useGSAP } from "@gsap/react";
-import { images } from "@/public/assets";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 const Steps = () => {
   const containerRef = useRef(null);
   const dotRef = useRef(null);
-  const cardRef = useRef(null);
+  const cardRefs = useRef([]);
+  const [currentTab, setCurrentTab] = useState(0);
 
   useGSAP(() => {
-    gsap.to(dotRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        pin: true,
-      },
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
+      trigger: dotRef.current,
+      start: "top 20%",
+      end: "bottom bottom",
+      pin: true,
+      pinSpacing: false,
     });
-    gsap.to(cardRef.current, {
-      scrollTrigger: {
-        trigger: cardRef.current,
-        start: "top 50%",
+    // gsap.to(dotRef.current, {
+    //   scrollTrigger: {
+    //     trigger: containerRef.current,
+    //     pin: true,
+    //   },
+    // });
+    // gsap.to(cardRef.current, {
+    //   scrollTrigger: {
+    //     trigger: cardRef.current,
+    //     start: "top 50%",
+    //     scrub: true,
+    //     pin:false
+    //   },
+    // });
+  });
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
+
+    cardRefs.current.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setCurrentTab(index),
+        onEnterBack: () => setCurrentTab(index),
+        markers: true,
         scrub: true,
-      },
+      });
     });
   });
 
+
   return (
     <div className="bg-secondary" ref={containerRef} >
-      <div className="max-w-[1240px] w-full mx-auto px-4 py-20 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-[6fr_6fr] gap-7 ">
-          <div className="h-full">
+      <div className="max-w-[1240px] w-full mx-auto px-4 py-20 overflow-hidden" id="smooth-wrapper">
+        <div className="grid grid-cols-1 lg:grid-cols-[6fr_6fr] gap-7"  id="smooth-content">
+          <div ref={dotRef} className="h-full">
             <h1 className="text-5xl font-semibold font-primary">
               One button is all it <br /> takes to record a Wave
             </h1>
@@ -40,23 +68,23 @@ const Steps = () => {
             <div className="h-full mt-12 flex gap-7 relative">
               <div className="w-[1px] h-full bg-white"></div>
               <div className="circle size-[10.69px] bg-[#00FFFF] rounded-full absolute -left-[5px]"></div>
-              <div ref={dotRef} className="space-y-4 text-[#ffffff60]">
-                <p>Record Audio</p>
-                <p>Transcribe Audio</p>
-                <p>Summarize Audio</p>
+              <div className="space-y-4 text-[#ffffff60]">
+                <p className={currentTab === 0 ? "text-white" : ""}>Record Audio</p>
+                <p className={currentTab === 1 ? "text-white" : ""}>Transcribe Audio</p>
+                <p className={currentTab === 2 ? "text-white" : ""}>Summarize Audio</p>
               </div>
             </div>
           </div>
 
           {/* right side grid */}
-          <div>
+          <ReactLenis orientation={"horizontal"} wheelMultiplier={35} options={{ lerp: 0.7, duration: 0.1, smoothTouch: true }}>
             <p className="text-2xl">
               Over 1,679,891 minutes of audio have been processed processed with
               Wave.
             </p>
-            <div ref={cardRef} className="mt-16 space-y-8">
+            <div className="mt-16 space-y-8">
               {/* card 1 */}
-              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px]">
+              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px]" ref={(el) => (cardRefs.current[0] = el)}>
                 <div className="absolute z-0">
                   <img src={'/assets/images/stepBg.png'} alt="" loading="lazy" />
                 </div>
@@ -70,7 +98,7 @@ const Steps = () => {
                 </div>
               </div>
               {/* card 2 */}
-              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px]">
+              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px]" ref={(el) => (cardRefs.current[1] = el)}>
                 <div className="absolute right-0 rotate-180 z-0">
                   <img src={'/assets/images/stepBg.png'} alt="" loading="lazy" />
                 </div>
@@ -89,7 +117,7 @@ const Steps = () => {
                 </div>
               </div>
               {/* card 3 */}
-              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px] overflow-hidden">
+              <div className="bg-[#766EFF] rounded-[30px] relative h-[540px] overflow-hidden" ref={(el) => (cardRefs.current[2] = el)}>
                 <div className="absolute left-0 -bottom-[36px] -rotate-90 z-0 ">
                   <img src={"/assets/images/stepBg.png"} alt="" loading="lazy" />
                 </div>
@@ -105,7 +133,7 @@ const Steps = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ReactLenis>
         </div>
       </div>
     </div>

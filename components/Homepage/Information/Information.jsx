@@ -1,6 +1,27 @@
 import { images } from "@/public/assets";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import gsap from "gsap";
 
 const Information = () => {
+  const cardRef = useRef(null);
+  // children policy should be implemented
+  useGSAP(() => {
+    gsap.from(cardRef.current, {
+      y: -200,
+      y: 200,
+      opacity: 0.6,
+      ease: "power1.out",
+      duration: 1.5, rotate: 10,
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: "top 90%",
+        end: "center 80%",
+        scrub: true,
+      },
+    });
+  });
+
   return (
     <div className="bg-secondary">
       <div className="max-w-[1380px] w-full mx-auto px-4 pt-28 pb-40">
@@ -8,7 +29,7 @@ const Information = () => {
           Do all these with Wave
         </h1>
         {/* cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 auto-rows-auto gap-3">
+        <div ref={cardRef} className="grid grid-cols-1 lg:grid-cols-12 auto-rows-auto gap-3">
           {/* card 1 */}
           <div className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-2 rounded-[16px] p-6 h-[429px] relative">
             <h3 className="text-2xl font-semibold mb-4">Record</h3>

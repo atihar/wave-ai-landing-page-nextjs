@@ -10,7 +10,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,6 +73,7 @@ const SwiperButtonPrev = () => {
 const Testimonial = () => {
   const imageRef = useRef(null);
   const sliderRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   useGSAP(() => {
     gsap.from(imageRef.current, {
@@ -102,6 +103,7 @@ const Testimonial = () => {
       },
     });
   });
+  
   return (
     <div className="bg-[#FFFDE4] relative overflow-hidden" id="testimonial">
       <div className="absolute top-0 right-0 z-0">
@@ -140,6 +142,7 @@ const Testimonial = () => {
               spaceBetween={30}
               loop={true}
               className="relative"
+              onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
             >
               {testimonialsData.map((item, index) => (
                 <SwiperSlide key={index}>
@@ -169,8 +172,8 @@ const Testimonial = () => {
               {/* bottom part */}
               <div className="bg-[#F1F1F1] p-6 rounded-b-2xl flex items-center justify-between absolute bottom-0 right-0 left-0 z-10">
                 <p className="text-2xl text-[#111315]">
-                  <span>1</span>
-                  <span className="text-gray-600"> / 8</span>
+                  <span>{currentSlide}</span>
+                  <span className="text-gray-600"> / {testimonialsData.length}</span>
                 </p>
                 <div className="flex items-center gap-5">
                   <SwiperButtonPrev />

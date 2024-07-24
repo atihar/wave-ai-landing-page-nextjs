@@ -3,8 +3,8 @@ import  { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaPhone } from "react-icons/fa";
-import { images } from "@/public/assets";
 import "./Companion.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -31,7 +31,7 @@ const eliteFeatures = [
 
 export const ExplorerCard = () => {
   return (
-    <div className="rounded-2xl">
+    <div className="rounded-2xl hover:-translate-y-2 hover:duration-500 duration-300">
       <div className="bg-[#4D5EF6] p-10 rounded-t-2xl space-y-3 relative">
         <h3 className="font-primary text-[32px] font-semibold">Explorer</h3>
         <p>Discover the possibilities</p>
@@ -66,7 +66,7 @@ export const ExplorerCard = () => {
 
         {/* button */}
 
-        <div className="p-10 w-full">
+        <div className="p-10 w-full cursor-pointer">
           <button className="bg-[#4D5EF6] w-full py-4 text-center rounded-full hover:opacity-90 transition-all duration-300">
             Download Wave
           </button>
@@ -78,7 +78,7 @@ export const ExplorerCard = () => {
 
 export const EssentialsCard = () => {
   return (
-    <div className="rounded-2xl">
+    <div className="rounded-2xl hover:-translate-y-2 hover:duration-500 duration-300">
       <div className="bg-[#E3EEF1] p-10 rounded-t-2xl space-y-3 relative text-black">
         <h3 className="font-primary text-[32px] font-semibold">Explorer</h3>
         <p className="text-[#41474D]">Perfect for occasional needs</p>
@@ -125,7 +125,7 @@ export const EssentialsCard = () => {
 
 export const EliteCard = () => {
   return (
-    <div className="rounded-2xl">
+    <div className="rounded-2xl hover:-translate-y-2 hover:duration-500 duration-300">
       <div className="bg-[#CB237E] p-10 rounded-t-2xl space-y-3 relative">
         <h3 className="font-primary text-[32px] font-semibold">Explorer</h3>
         <p>Perfect for occasional needs</p>
