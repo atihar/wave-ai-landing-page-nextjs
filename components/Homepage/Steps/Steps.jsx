@@ -17,7 +17,7 @@ const Steps = () => {
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.create({
       trigger: dotRef.current,
-      start: "top 20%",
+      start: "top top",
       end: "bottom bottom",
       pin: true,
       pinSpacing: false,
@@ -40,7 +40,6 @@ const Steps = () => {
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(ScrollTrigger);
 
     cardRefs.current.forEach((card, index) => {
       ScrollTrigger.create({
@@ -49,7 +48,6 @@ const Steps = () => {
         end: "bottom center",
         onEnter: () => setCurrentTab(index),
         onEnterBack: () => setCurrentTab(index),
-        markers: true,
         scrub: true,
       });
     });
@@ -60,14 +58,14 @@ const Steps = () => {
     <div className="bg-secondary" ref={containerRef} >
       <div className="max-w-[1240px] w-full mx-auto px-4 py-20 overflow-hidden" id="smooth-wrapper">
         <div className="grid grid-cols-1 lg:grid-cols-[6fr_6fr] gap-7"  id="smooth-content">
-          <div ref={dotRef} className="h-full">
+          <div className="h-full">
             <h1 className="text-5xl font-semibold font-primary">
               One button is all it <br /> takes to record a Wave
             </h1>
 
-            <div className="h-full mt-12 flex gap-7 relative">
-              <div className="w-[1px] h-full bg-white"></div>
-              <div className="circle size-[10.69px] bg-[#00FFFF] rounded-full absolute -left-[5px]"></div>
+            <div ref={dotRef} className="h-full mt-12 flex gap-7 relative pt-16">
+              <div className={`w-[1px] h-full bg-white ${currentTab === 0 ? "mt-[32px]" : currentTab === 1 ? "mt-[70px]" : "mt-[110px]"}`}></div>
+              <div className={`circle size-[10.69px] bg-[#00FFFF] rounded-full absolute -left-[5px]  ${currentTab === 0 ? "mt-[8px]" : currentTab === 1 ? "mt-[48px]" : "mt-[90px]"}`}></div>
               <div className="space-y-4 text-[#ffffff60]">
                 <p className={currentTab === 0 ? "text-white" : ""}>Record Audio</p>
                 <p className={currentTab === 1 ? "text-white" : ""}>Transcribe Audio</p>
@@ -77,12 +75,12 @@ const Steps = () => {
           </div>
 
           {/* right side grid */}
-          <ReactLenis orientation={"horizontal"} wheelMultiplier={35} options={{ lerp: 0.7, duration: 0.1, smoothTouch: true }}>
+          <ReactLenis orientation={"horizontal"} options={{ lerp: 0.7, duration: 0.1, smoothTouch: true }}>
             <p className="text-2xl">
               Over 1,679,891 minutes of audio have been processed processed with
               Wave.
             </p>
-            <div className="mt-16 space-y-8">
+            <div className="mt-16 space-y-8 pt-16">
               {/* card 1 */}
               <div className="bg-[#766EFF] rounded-[30px] relative h-[540px]" ref={(el) => (cardRefs.current[0] = el)}>
                 <div className="absolute z-0">

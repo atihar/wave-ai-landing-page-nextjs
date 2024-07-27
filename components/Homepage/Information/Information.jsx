@@ -4,22 +4,31 @@ import { useRef } from "react";
 import gsap from "gsap";
 
 const Information = () => {
-  const cardRef = useRef(null);
+  const card2Refs = useRef([]);
+  card2Refs.current = [];
+
+  const addTo2Refs = (el) => {
+    if (el && !card2Refs.current.includes(el)) {
+      card2Refs.current.push(el);
+    }
+  };
   // children policy should be implemented
   useGSAP(() => {
-    gsap.from(cardRef.current, {
-      y: -200,
-      y: 200,
-      opacity: 0.6,
-      ease: "power1.out",
-      duration: 1.5, rotate: 10,
-      scrollTrigger: {
-        trigger: cardRef.current,
-        start: "top 90%",
-        end: "center 80%",
-        scrub: true,
-      },
-    });
+    card2Refs.current.forEach((card, index) => {
+      gsap.from(card, {
+        y:200,
+        opacity: 0.6,
+        ease: "power3.out",
+        duration: 3,
+        delay: index * 0.4, // Stagger animation delay
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          end: "center 80%",
+          scrub: true,
+        },
+      });
+    })
   });
 
   return (
@@ -29,9 +38,9 @@ const Information = () => {
           Do all these with Wave
         </h1>
         {/* cards */}
-        <div ref={cardRef} className="grid grid-cols-1 lg:grid-cols-12 auto-rows-auto gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 auto-rows-auto gap-3">
           {/* card 1 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-2 rounded-[16px] p-6 h-[429px] relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-2 rounded-[16px] p-6 h-[429px] relative">
             <h3 className="text-2xl font-semibold mb-4">Record</h3>
             <p>
               Effortless audio recording on iPhone, iPad, & Mac. Unlimited
@@ -47,7 +56,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 2 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-2 rounded-[16px] pt-6 px-6 h-[429px] relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-2 rounded-[16px] pt-6 px-6 h-[429px] relative">
             <h3 className="text-2xl font-semibold mb-4">Transcribe</h3>
             <p>Top-notch transcription: Fast, multilingual support.</p>
             <div className="mt-24 absolute bottom-0 left-0 right-0 flex justify-center w-full">
@@ -60,7 +69,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 3 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative">
             <div className="px-6">
               <h3 className="text-2xl font-semibold mb-4">Phone</h3>
               <p>
@@ -77,7 +86,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 4 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative overflow-hidden">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-3 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative overflow-hidden">
             <div className="px-6">
               <h3 className="text-2xl font-semibold mb-4">Import</h3>
               <p>
@@ -127,7 +136,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 5 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-6 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-6 lg:row-span-1 w-full rounded-[16px] h-[208px] pt-6 relative">
             <div className="px-6">
               <h3 className="text-2xl font-semibold mb-4">Summarize</h3>
               <p>
@@ -152,7 +161,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 6 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 px-6 h-[259px] relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 px-6 h-[259px] relative">
             <h3 className="text-2xl font-semibold mb-4">Share</h3>
             <p>
               Share audio, summary, or transcript: <br /> URL publish, PDF.
@@ -167,7 +176,7 @@ const Information = () => {
             </div>
           </div>
           {/* card 7 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 px-6 h-[259px] relative">
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 px-6 h-[259px] relative">
             <h3 className="text-2xl font-semibold mb-4">Language</h3>
             <p>
               Multi-language support: <br /> Accurate transcription, <br />{" "}
@@ -191,8 +200,8 @@ const Information = () => {
             </div>
           </div>
           {/* card 8 */}
-          <div className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 pl-6 h-[259px] relative">
-            <h3 className="text-2xl font-semibold mb-4">Share</h3>
+          <div ref={addTo2Refs} className="bg-[#766EFF] col-span-12 lg:col-span-4 lg:row-span-1 rounded-[16px] pt-6 pl-6 h-[259px] relative">
+            <h3 className="text-2xl font-semibold mb-4">Siri</h3>
             <p>
               Siri shortcut <br /> compatible: <br /> iPhone 15 action <br />{" "}
               button recording.

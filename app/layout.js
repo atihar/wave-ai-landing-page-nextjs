@@ -5,7 +5,7 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Wave AI",
+  title: "Wave co",
   description: "Wave: AI-powered transcription and summarization for audio and calls in any language. Capturing and understanding crucial information, wherever you are.",
 };
 
