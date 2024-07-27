@@ -1,7 +1,11 @@
+'use client'
 import { images } from "@/public/assets";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Information = () => {
   const card2Refs = useRef([]);
@@ -19,13 +23,12 @@ const Information = () => {
         y:200,
         opacity: 0.6,
         ease: "power3.out",
-        duration: 3,
-        delay: index * 0.4, // Stagger animation delay
+        duration: 1,
+        delay: index * 0.2, // Stagger animation delay
         scrollTrigger: {
           trigger: card,
           start: "top 90%",
           end: "center 80%",
-          scrub: true,
         },
       });
     })
